@@ -33,7 +33,7 @@
                 </tr>
                 <?php endforeach;?>
             </table>
-            <?= $this->Html->link('<<Switch to Matches>>', ['controller' => 'Users', 'action' => 'matches'])?>
+            <?= $this->Html->link('<<Switch to Matches>>', ['controller' => 'Users', 'action' => 'matches',$id])?>
         </div>
     </div>
 </div>

@@ -25,7 +25,7 @@
                 </tr>
                 <?php endforeach;?>
             </table>
-            <?= $this->Html->link('<<Switch to Players>>', ['controller' => 'Users', 'action' => 'players'])?>
+            <?= $this->Html->link('<<Switch to Players>>', ['controller' => 'Users', 'action' => 'players',$id])?>
         </div>
     </div>
 </div>

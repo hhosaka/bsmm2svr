@@ -47,7 +47,9 @@ class UsersController extends AppController
     public function uploadGame()
     {
         $user = $this->Users->get($this->Authentication->getIdentity()->id);
-        $user['game']=json_encode($this->request->getData());
+        $data = $this->request->getData();
+        $user['game']=json_encode($data);
+        $user['guid']=json_decode($user['game'])->Id;
         if ($this->Users->save($user)) {
             $this->log($user['name'].'saved');
         }else{
@@ -77,20 +79,29 @@ class UsersController extends AppController
         }
     }
 
-    public function players(){
-        $user = $this->Users->get(1);
-        $game = json_decode($user['game']);
-        $players = json_decode($user['players']);
-
-        $this->set(compact('game','players'));
+    public function players($id){
+        $user = $this->Users->findAllByGuid($id)->first();
+        if($user!=null){
+            $game = json_decode($user['game']);
+            $players = json_decode($user['players']);
+            $this->set(compact('game','players','id'));
+        }else{
+            $this->Flash->error(__('Invalid parameter'));
+            //TODO redirect to error
+        }
     }
 
-    public function matches(){
-        $user = $this->Users->get(1);
-        $game = json_decode($user['game']);
-        $matches = json_decode($user['matches']);
+    public function matches($id){
+        $user = $this->Users->findAllByGuid($id)->first();
+        if($user!=null){
+            $game = json_decode($user['game']);
+            $matches = json_decode($user['matches']);
 
-        $this->set(compact('game','matches'));
+            $this->set(compact('game','matches','id'));
+        }else{
+            $this->Flash->error(__('Invalid parameter'));
+            //TODO redirect to error
+        }
     }
 
     /**
