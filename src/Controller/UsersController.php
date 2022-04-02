@@ -14,9 +14,8 @@ class UsersController extends AppController
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         parent::beforeFilter($event);
-        $this->Authentication->addUnauthenticatedActions(['login','add','players','matches']);
+        $this->Authentication->addUnauthenticatedActions(['login','add','players','matches','error']);
     }
-    
     public function login()
     {
         $this->request->allowMethod(['get', 'post']);
@@ -44,66 +43,6 @@ class UsersController extends AppController
             return $this->redirect(['controller' => 'Users', 'action' => 'login']);
         }
     }
-    public function uploadGame()
-    {
-        $user = $this->Users->get($this->Authentication->getIdentity()->id);
-        $data = $this->request->getData();
-        $user['game']=json_encode($data);
-        $user['guid']=json_decode($user['game'])->Id;
-        if ($this->Users->save($user)) {
-            $this->log($user['name'].'saved');
-        }else{
-            $this->log($user['name'].'save failed');
-        }
-    }
-
-    public function uploadPlayers()
-    {
-        $user = $this->Users->get($this->Authentication->getIdentity()->id);
-        $user['players']=json_encode($this->request->getData());
-        if ($this->Users->save($user)) {
-            $this->log($user['name'].'saved');
-        }else{
-            $this->log($user['name'].'save failed');
-        }
-    }
-
-    public function uploadMatches()
-    {
-        $user = $this->Users->get($this->Authentication->getIdentity()->id);
-        $user['matches']=json_encode($this->request->getData());
-        if ($this->Users->save($user)) {
-            $this->log($user['name'].'saved');
-        }else{
-            $this->log($user['name'].'save failed');
-        }
-    }
-
-    public function players($id){
-        $user = $this->Users->findAllByGuid($id)->first();
-        if($user!=null){
-            $game = json_decode($user['game']);
-            $players = json_decode($user['players']);
-            $this->set(compact('game','players','id'));
-        }else{
-            $this->Flash->error(__('Invalid parameter'));
-            //TODO redirect to error
-        }
-    }
-
-    public function matches($id){
-        $user = $this->Users->findAllByGuid($id)->first();
-        if($user!=null){
-            $game = json_decode($user['game']);
-            $matches = json_decode($user['matches']);
-
-            $this->set(compact('game','matches','id'));
-        }else{
-            $this->Flash->error(__('Invalid parameter'));
-            //TODO redirect to error
-        }
-    }
-
     /**
      * Index method
      *

@@ -40,9 +40,27 @@
                 </tr>
             </table>
             <div class="text">
+                <strong><?= __('Guid') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($user->guid)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
                 <strong><?= __('Game') ?></strong>
                 <blockquote>
-                    <?= $this->Text->autoParagraph(h($user->Game)); ?>
+                    <?= $this->Text->autoParagraph(h($user->game)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
+                <strong><?= __('Players') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($user->players)); ?>
+                </blockquote>
+            </div>
+            <div class="text">
+                <strong><?= __('Matches') ?></strong>
+                <blockquote>
+                    <?= $this->Text->autoParagraph(h($user->matches)); ?>
                 </blockquote>
             </div>
         </div>

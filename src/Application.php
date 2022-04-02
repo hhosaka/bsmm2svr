@@ -116,12 +116,11 @@ class Application extends BaseApplication
                 'httponly' => true,
             ]);
             $csrf->skipCheckCallback(function ($request) {
+                $action=$request->getParam('action');
+                $contlr=$request->getParam('controller');
                 if (
-                    $request->getParam('controller') === 'Users'
-                    && ( $request->getParam('action') === 'login'
-                        || $request->getParam('action') === 'uploadPlayers'
-                        || $request->getParam('action') === 'uploadGame'
-                        || $request->getParam('action') === 'uploadMatches')
+                    ($contlr === 'Users' &&  $action === 'login')
+                    || ($contlr === 'Games' && preg_match('/^upload/', $action))
                 ) {
                     return true;
                 }

@@ -72,13 +72,26 @@ class UsersTable extends Table
         $validator
             ->scalar('role')
             ->maxLength('role', 16)
-            ->requirePresence('role', 'create')
             ->notEmptyString('role');
 
         $validator
-            ->scalar('Game')
-            ->maxLength('Game', 4294967295.0)
-            ->allowEmptyString('Game');
+            ->scalar('guid')
+            ->allowEmptyString('guid');
+
+        $validator
+            ->scalar('game')
+            ->maxLength('game', 4294967295)
+            ->allowEmptyString('game');
+
+        $validator
+            ->scalar('players')
+            ->maxLength('players', 4294967295)
+            ->allowEmptyString('players');
+
+        $validator
+            ->scalar('matches')
+            ->maxLength('matches', 4294967295)
+            ->allowEmptyString('matches');
 
         return $validator;
     }
