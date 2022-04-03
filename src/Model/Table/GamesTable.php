@@ -65,6 +65,11 @@ class GamesTable extends Table
             ->notEmptyString('guid');
 
         $validator
+            ->email('email')
+            ->requirePresence('email', 'create')
+            ->notEmptyString('email');
+
+        $validator
             ->scalar('outline')
             ->maxLength('outline', 4294967295)
             ->requirePresence('outline', 'create')

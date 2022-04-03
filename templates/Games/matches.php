@@ -3,7 +3,7 @@
         <div class="users view content">
             <?= 'Title : '.$outline->Title?><br>
             <?= 'Owner : '.$outline->Owner?><br>
-            <?= 'Started : '.$outline->Started?><br>
+            <?= 'Started : '.$outline->ElapseTime?><br>
             <table>
                 <th>
                     <td>id</td>

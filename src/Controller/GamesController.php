@@ -20,17 +20,30 @@ class GamesController extends AppController
     public function uploadOutline($guid="")
     {
         $this->autoRender = false;
-        $this->log('id='.$guid);
+        $this->log('guid='.$guid);
         $game = $this->Games->findAllByGuid($guid)->first();
         if($game==null){
             $this->log('$game==null');
             $game = $this->Games->newEmptyEntity();
-            //$game = $this->Games->patchEntity($game, $this->request->getData());
             $game['guid']=$guid;
         }
         $game['outline']=json_encode($this->request->getData());
+        $game['email']=json_decode($game['outline'])->MailAddress;
+        
         if (!$this->Games->save($game)) {
             $this->log('ERROR : uploadGame'.'/'.$game['guid']);
+        }
+    }
+
+    public function uploadGame($guid="")
+    {
+        $this->autoRender = false;
+        $data = $this->Games->findAllByGuid($guid)->first();
+        if($data!=null){
+            $data['game']=json_encode($this->request->getData());
+            if (!$this->Games->save($data)) {
+                $this->log('ERROR : uploadGame'.'/'.$data['id']);
+            }
         }
     }
 

@@ -3,7 +3,7 @@
         <div class="users view content">
             <?= 'Title : '.$outline->Title?><br>
             <?= 'Owner : '.$outline->Owner?><br>
-            <?= 'Started : '.$outline->Started?><br>
+            <?= 'Started : '.$outline->ElapseTime?><br>
             <?= 'Rule : '.$outline->RuleName?><br>
             <table border='1'>
                 <tr>
@@ -25,10 +25,10 @@
                         <td style="text-align: center;"><?= h($player->Order) ?></td>
                         <td><?= h($player->Name) ?></td>
                         <td style="text-align: center;"><?= h($player->Point->MatchPoint) ?></td>
-                        <td style="text-align: center;"><?= h($player->Point->WinPoint) ?></td>
+                        <td style="text-align: center;"><?= h(round($player->Point->WinPoint, 2)) ?></td>
                         <td style="text-align: center;"><?= h($player->Point->LifePoint) ?></td>
                         <td style="text-align: center;"><?= h($player->OpponentPoint->MatchPoint) ?></td>
-                        <td style="text-align: center;"><?= h($player->OpponentPoint->WinPoint) ?></td>
+                        <td style="text-align: center;"><?= h(round($player->OpponentPoint->WinPoint,2)) ?></td>
                         <td style="text-align: center;"><?= h($player->OpponentPoint->LifePoint) ?></td>
                 </tr>
                 <?php endforeach;?>

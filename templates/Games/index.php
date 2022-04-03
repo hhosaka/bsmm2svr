@@ -13,6 +13,7 @@
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('guid') ?></th>
+                    <th><?= $this->Paginator->sort('email') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -23,9 +24,12 @@
                 <tr>
                     <td><?= $this->Number->format($game->id) ?></td>
                     <td><?= h($game->guid) ?></td>
+                    <td><?= h($game->email) ?></td>
                     <td><?= h($game->created) ?></td>
                     <td><?= h($game->modified) ?></td>
                     <td class="actions">
+                        <?= $this->Html->link(__('players'), ['action' => 'players', $game->guid]) ?>
+                        <?= $this->Html->link(__('matches'), ['action' => 'matches', $game->guid]) ?>
                         <?= $this->Html->link(__('View'), ['action' => 'view', $game->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $game->id]) ?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $game->id], ['confirm' => __('Are you sure you want to delete # {0}?', $game->id)]) ?>

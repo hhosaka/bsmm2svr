@@ -10,6 +10,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $guid
+ * @property string $email
  * @property string $outline
  * @property string $players
  * @property string $matches
@@ -30,6 +31,7 @@ class Game extends Entity
      */
     protected $_accessible = [
         'guid' => true,
+        'email' => true,
         'outline' => true,
         'players' => true,
         'matches' => true,

@@ -18,6 +18,7 @@
                 <legend><?= __('Add Game') ?></legend>
                 <?php
                     echo $this->Form->control('guid');
+                    echo $this->Form->control('email');
                     echo $this->Form->control('outline');
                     echo $this->Form->control('players');
                     echo $this->Form->control('matches');

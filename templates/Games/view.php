@@ -23,6 +23,10 @@
                     <td><?= h($game->guid) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Email') ?></th>
+                    <td><?= h($game->email) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($game->id) ?></td>
                 </tr>
